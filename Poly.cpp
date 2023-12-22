@@ -53,17 +53,42 @@ void Poly::setCube()
     relativePoints[7][0] = 1;
     relativePoints[7][1] = 1;
     relativePoints[7][2] = 1;
-
+    type = 2;
 }
 
 void Poly::setLine(const float(&start)[3], const float(&end)[3])
 {
-    float slope[3] = { (end[0] - start[0]) / n, (end[1] - start[1]) / n, (end[2] - start[2]) / n };
+   /* float slope[3] = { (end[0] - start[0]) / n, (end[1] - start[1]) / n, (end[2] - start[2]) / n };
     for (int i = 0; i < n; i++) {
         relativePoints[i][0] = slope[0] * i + start[0];
         relativePoints[i][1] = slope[1] * i + start[1];
         relativePoints[i][2] = slope[2] * i + start[2];
-    }
+    }*/
+    relativePoints[0][0] = start[0];
+    relativePoints[0][1] = start[1];
+    relativePoints[0][2] = start[2];
+
+    relativePoints[1][0] = end[0];
+    relativePoints[1][1] = end[1];
+    relativePoints[1][2] = end[2];
+
+    type = 1;
+}
+
+void Poly::setTriangle(const float(&p1)[3], const float(&p2)[3], const float(&p3)[3])
+{
+    relativePoints[0][0] = p1[0];
+    relativePoints[0][1] = p1[1];
+    relativePoints[0][2] = p1[2];
+
+    relativePoints[1][0] = p2[0];
+    relativePoints[1][1] = p2[1];
+    relativePoints[1][2] = p2[2];
+
+    relativePoints[2][0] = p3[0];
+    relativePoints[2][1] = p3[1];
+    relativePoints[2][2] = p3[2];
+    type = 0;
 }
 
 void Poly::setColor(int R, int G, int B)
@@ -91,4 +116,8 @@ int Poly::getN()
 int* Poly::getColor()
 {
     return color;
+}
+
+int Poly::getType() {
+    return type;
 }

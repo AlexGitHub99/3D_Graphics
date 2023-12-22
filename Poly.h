@@ -20,6 +20,7 @@ public:
 		color[0] = 0;
 		color[1] = 0;
 		color[2] = 0;
+		type = -1;
 	}
 	void setX(float x);
 	void setY(float y);
@@ -27,10 +28,12 @@ public:
 	void setSize(float size);
 	void setCube();
 	void setLine(const float (&start)[3], const float (&end)[3]);
+	void setTriangle(const float(&p1)[3], const float(&p2)[3], const float(&p3)[3]);
 	void setColor(int R, int G, int B);
 	float** getPoints();
 	int getN();
 	int* getColor();
+	int getType();
 private:
 	float x;
 	float y;
@@ -40,4 +43,5 @@ private:
 	float** relativePoints;
 	float** points;
 	int color[3];
+	int type;
 };
